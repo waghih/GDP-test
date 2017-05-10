@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Cart Application</title>
+    <!--Import Google Icon Font-->
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.1/css/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="stylesheets/main.css">
+
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.1.5/angular.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/ngstorage/0.3.6/ngStorage.min.js"></script>
+    <script src="javascript/app.js"></script>
+    <!--Let browser know website is optimized for mobile-->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  </head>
+  <body class="grey lighten-5" ng-app="CartApp" ng-controller="CartCtrl">
+
+    <nav>
+      <div class="nav-wrapper white">
+        <ul class="right">
+          <li><a href="#" class="indigo-text"><i class="material-icons">shopping_cart</i></a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <br>
+    
+    <div class="container">
+      <div>
+        <select ng-model="selectedCustomer" class="browser-default">
+          <option ng-repeat="customer in customers" value="{{customer}}">{{customer}}</option>
+        </select>
+      </div>      
+    </div>
+
+    <br>
+
+    <div>
+      <div class="row">
+        <div class="col l4 m5 s12 push-l8">
+          <h3>Shopping Cart</h3>
+          <div class="row">
+            <div class="col s12">
+              <div class="card">
+                <div class="card-content">
+                  <ul class="collection">
+                    <li class="collection-item" ng-repeat="item in cart">
+                      <div>{{item.name}}
+                        <div class="secondary-content">
+                          <div class="quantity-container">
+                            <i class="material-icons red-text" ng-click="removeItemCart(item)">remove_circle</i>
+                            <p class="black-text">{{item.count+item.free_deal}}</p>
+                            <i class="material-icons" ng-click="addItemToCart(item)">add_circle</i>
+                            <div class="price-container black-text">
+                              $ {{item.price*item.count | number: 2}}                        
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </li>
+                  </ul>
+                  <h5 class="right">Total: $ {{total | number: 2}}</h5>
+                </div>
+                <div class="card-action right-align">
+                  <button class="btn pink lighten-1 waves-effect waves-light">Checkout</button>
+                </div>
+              </div>              
+            </div>
+          </div>
+        </div>
+        <div class="col l8 m7 s12 pull-l4">
+          <h3>Products</h3>
+          <div class="row">
+            <div class="col l4 m6 s12" ng-repeat="product in products">
+              <div class="card white">
+                <div class="card-content">
+                  <span class="card-title"><h4 class="center">{{product.name}}</h4></span>
+                  <h4 class="indigo-text center"><sup>$</sup> {{product.price}}</h4>
+                  <br>
+                  <div ng-repeat="description in product.description">
+                    <p class="center grey-text">{{description}}</p>
+                    <hr class="desc-line">
+                  </div>
+                </div>
+                <div class="card-action center">
+                  <button class="btn pink lighten-1 waves-effect waves-light" ng-click="addItemToCart(product)">Add to cart</button>
+                </div>
+              </div>
+            </div> 
+          </div>
+        </div>        
+      </div>
+    </div>    
+        
+
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.1/js/materialize.min.js"></script>
+    <script>
+      $(document).ready(function() {
+        $('select').material_select();
+      });
+    </script>
+  </body>
+</html>

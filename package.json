@@ -1,0 +1,17 @@
+{
+  "name": "GDP Test Shopping Cart",
+  "version": "0.2.5",
+  "description": "Advertisement shopping cart for GDP test",
+  "engines": {
+    "node": "5.9.1"
+  },
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "ejs": "2.4.1",
+    "express": "4.13.3"
+  },
+  "license": "MIT"
+}
